@@ -3,7 +3,7 @@ name: Deploy to Domeneshop
 on:
   push:
     branches:
-      - master
+      - master  # replace with the name of your primary branch if not "main"
 
 jobs:
   build_and_deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: '18'  # replace with your Node.js version
 
       - name: Install dependencies
         run: npm ci
@@ -24,12 +24,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Set up environment variables
-        run: |
-          echo "DOMENESHOP_Token=${{ secrets.DOMENESHOP_TOKEN }}" >> $GITHUB_ENV
-          echo "DOMENESHOP_Secret=${{ secrets.DOMENESHOP_SECRET }}" >> $GITHUB_ENV
-
       - name: Deploy to Domeneshop
-        run: |
-          cp dns_domeneshop.sh ~/.acme.sh/dnsapi/
-          acme.sh --issue --dns dns_domeneshop -d https://sanderskofsrud.no/ -d https://sanderskofsrud.no/
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          ftp-server: ftp.domeneshop.no/www
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./build  # replace with the directory of your built project if not "build"
