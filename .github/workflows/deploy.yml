@@ -27,7 +27,8 @@ jobs:
       - name: Deploy to Domeneshop
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          ftp-server: ftp.domeneshop.no/www
-          ftp-username: ${{ secrets.FTP_USERNAME }}
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./build  # replace with the directory of your built project if not "build"
+          server: ftp.domeneshop.no
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./build
+          server-dir: /www
