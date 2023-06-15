@@ -17,8 +17,8 @@ jobs:
     - name: Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ftp.domeneshop.no
+        server: servername
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./build
+        local-dir: ./build/
         server-dir: /www
