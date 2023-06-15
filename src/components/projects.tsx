@@ -8,7 +8,6 @@ export const Projects = forwardRef<HTMLDivElement>((props, ref) => {
         <li>Project Name, Description, Link to GitHub Repo</li>
         <li>Project Name, Description, Link to GitHub Repo</li>
         <li>Project Name, Description, Link to GitHub Repo</li>
-        <li>Project Name, Description, Link to GitHub Repo</li>
       </ul>
     </div>
   );
