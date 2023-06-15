@@ -8,6 +8,7 @@ export const Education = forwardRef<HTMLDivElement>((props, ref) => {
         <li>School Name, Degree, Field of Study, Graduation Date</li>
         <li>School Name, Degree, Field of Study, Graduation Date</li>
         <li>School Name, Degree, Field of Study, Graduation Date</li>
+        <li>School Name, Degree, Field of Study, Graduation Date</li>
       </ul>
     </div>
   );
