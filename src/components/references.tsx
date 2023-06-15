@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const References = () => {
+export const References = forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div>
+    <div ref={ref}>
       <h2>References</h2>
       <ul>
         <li>Reference Name, Job Title, Company Name, Contact Information</li>
@@ -10,6 +10,4 @@ const References = () => {
       </ul>
     </div>
   );
-};
-
-export default References;
+});

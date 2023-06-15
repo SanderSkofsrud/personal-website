@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { forwardRef } from "react";
 
-const Education = () => {
+export const Education = forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div>
+    <div ref={ref}>
       <h2>Education</h2>
       <ul>
+        <li>School Name, Degree, Field of Study, Graduation Date</li>
         <li>School Name, Degree, Field of Study, Graduation Date</li>
         <li>School Name, Degree, Field of Study, Graduation Date</li>
       </ul>
     </div>
   );
-};
-
-export default Education;
+});

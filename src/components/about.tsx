@@ -1,15 +1,13 @@
 // About.tsx
 
-import React from 'react';
-import './css/about.css';
+import React, { forwardRef } from "react";
 
-const About: React.FC = () => {
-    return (
-        <div className="about-container">
-            <h1>About Me</h1>
-            <p>This is some information about me...</p>
-        </div>
-    );
-}
+export const About = forwardRef<HTMLDivElement>((props, ref) => {
+  return (
+    <div ref={ref}>
+      <h1>About</h1>
+      {/* Add your content here */}
+    </div>
+  );
+});
 
-export default About;

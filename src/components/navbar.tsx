@@ -1,20 +1,29 @@
-// Navbar.tsx
+//NavBar
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { RefObject } from "react";
 
-const Navbar: React.FC = () => {
-    return (
-        <nav>
-            <ul>
-                <li><Link to="/">About</Link></li>
-                <li><Link to="/education">Education</Link></li>
-                <li><Link to="/experience">Experience</Link></li>
-                <li><Link to="/projects">Projects</Link></li>
-                <li><Link to="/references">References</Link></li>
-            </ul>
-        </nav>
-    );
+interface NavBarProps {
+  sections: string[];
+  refs: RefObject<HTMLDivElement>[];
 }
 
-export default Navbar;
+export const NavBar: React.FC<NavBarProps> = ({ sections, refs }) => {
+  const handleClick = (ref: RefObject<HTMLDivElement>) => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <nav>
+      <ul>
+        {sections.map((section, index) => (
+          <li key={index}>
+            <button onClick={() => handleClick(refs[index])}>
+              {section}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+

@@ -1,15 +1,15 @@
 // App.tsx
 
 import React from 'react';
-import './App.css';
-import Navigation from './components/navigation';
+import { MainPage } from './components/MainPage';
 
-const App: React.FC = () => {
-    return (
-        <div className="App">
-            <Navigation />
-        </div>
-    );
+function App() {
+  return (
+    <div className="App">
+      <MainPage />
+    </div>
+  );
 }
 
 export default App;
+

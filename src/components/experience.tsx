@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const Experience = () => {
+export const Experience = forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div>
+    <div ref={ref}>
       <h2>Experience</h2>
       <ul>
         <li>Job Title, Company Name, Employment Dates</li>
@@ -10,6 +10,4 @@ const Experience = () => {
       </ul>
     </div>
   );
-};
-
-export default Experience;
+});
