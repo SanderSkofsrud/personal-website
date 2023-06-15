@@ -1,34 +1,24 @@
-name: Deploy to Domeneshop
+name: Deploy Website
 
 on:
   push:
     branches:
-      - master  # replace with the name of your primary branch if not "main"
+      - main
 
 jobs:
-  build_and_deploy:
+  deploy:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'  # replace with your Node.js version
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Deploy to Domeneshop
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with:
-          server: ftp.domeneshop.no
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./build/
-          server-dir: /www/
+    - name: Deploy
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ftp.domeneshop.no
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./build
+        server-dir: /www
