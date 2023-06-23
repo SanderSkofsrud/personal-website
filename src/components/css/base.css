@@ -1,5 +1,3 @@
-/* base.css expanded */
-
 /* Import fonts */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
 
@@ -89,12 +87,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #333;
-}
-
-nav h1 {
-  margin: 0;
-  font-size: 2rem;
+  background-color: #8b4640; /* navbar color changed to red */
 }
 
 nav ul {
@@ -107,21 +100,27 @@ nav li {
   margin: 0 1rem;
 }
 
+nav h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #fff; /* text color changed to white */
+}
+
 nav button {
   background-color: transparent;
   border: none;
-  color: #fff;
+  color: #fff; /* text color changed to white */
   font-size: 1rem;
   cursor: pointer;
 }
 
 nav button:hover {
-    background-color: #444;
-    color: #fff;
+  background-color: #a4544d; /* hover color changed to darker shade */
+  color: #fff;
 }
 
 nav button.active {
-    color: #ff6f61;
+  color: #130202; /* active button color changed to white */
 }
 
 /* Set styles for blockquotes */
@@ -158,13 +157,47 @@ figcaption {
   font-size: 0.875em;
 }
 
+
 .sticky {
     position: sticky;
     top: 0;
     z-index: 1000;
-  }
+}
   
 html {
     scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  .menu-button {
+    display: inline;
   }
-  
+
+  .desktop-menu {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-button {
+    display: none;
+  }
+
+  .desktop-menu {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}
+
+.menu-button {
+  display: none;
+}
