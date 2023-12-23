@@ -8,19 +8,18 @@ import { Projects } from "./Projects";
 import { References } from "./References";
 
 export const MainPage: React.FC = () => {
-  const sections = ["about", "education", "experience", "projects", "references"];
-  const refs = sections.map(() => createRef<HTMLDivElement>());
+    const sections = ["about", "education", "experience", "projects", "references"];
+    const refs = sections.map(() => createRef<HTMLDivElement>());
 
-  return (
-    <main>
-      <NavBar sections={sections} refs={refs} />
-      <TransitionSection />
-      <About ref={refs[0]} />
-      <Education ref={refs[1]} />
-      <Experience ref={refs[2]} />
-      <Projects ref={refs[3]} />
-      <References ref={refs[4]} />
-    </main>
-  );
+    return (
+        <main>
+            <NavBar sections={sections} refs={refs} />
+            <TransitionSection />
+            <About ref={refs[0]} />
+            <Education ref={refs[1]} />
+            <Experience ref={refs[2]} />
+            <Projects ref={refs[3]} />
+            <References ref={refs[4]} />
+        </main>
+    );
 };
-
