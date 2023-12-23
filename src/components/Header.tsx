@@ -1,22 +1,16 @@
-import React from "react";
-import "./css/wave-section.css";
+import React from 'react';
+import styled from 'styled-components';
 
-export const WaveSection: React.FC = () => {
-  return (
-    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <path
-          id="sineWave"
-          className="waveColor"
-          d="M0,160 C320,300,420,300,740,160 C1060,20,1120,20,1440,160 V0 H0"
-        />
-      </defs>
-      <use className="wave" href="#sineWave" />
-      <use className="wave" x="-100%" href="#sineWave" />
-      <use className="wave1" href="#sineWave" />
-      <use className="wave1" x="-100%" href="#sineWave" />
-      <use className="wave2" href="#sineWave" />
-      <use className="wave2" x="-100%" href="#sineWave" />
-    </svg>
-  );
+// Styled component for the transition
+const TransitionShape = styled.div`
+  width: 100%;
+  height: 100px; // Adjust height as necessary
+  background-color: #000; // Match this to your NavBar background color
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+`;
+
+const TransitionSection: React.FC = () => {
+    return <TransitionShape />;
 };
+
+export default TransitionSection;

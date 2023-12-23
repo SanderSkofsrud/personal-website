@@ -1,37 +1,25 @@
-// About.tsx
-
-import React, { forwardRef } from "react";
-//import "./glint/css/base.css";
-//import "./glint/css/vendor.css";
-//import "./glint/css/main.css";
-//import "./glint/css/fonts.css";
-import "./css/base.css";
+import React, { forwardRef } from 'react';
+import profileImage from './images/meg.jpg'; // Ensure the path is correct
+import './css/base.css';
 
 export const About = forwardRef<HTMLDivElement>((props, ref) => {
-  return (
-    <div ref={ref}>
-      <h1>About</h1>
-      {/* Add your content here */}
-      <p>Test</p>
-      <ul>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-      </ul>
-    </div>
-  );
+    return (
+        <div ref={ref} className="about-container">
+            <div className="about-image">
+                <img src={profileImage} alt="An image of me" />
+            </div>
+            <div className="about-text">
+                <h1>About Me</h1>
+                <p>
+                    My name is Sander Rom Skofsrud, and I am a 20 year old Computer
+                    Science student at the Norwegian University of Science and
+                    Technology (NTNU) in Trondheim, Norway.
+                </p>
+                <p>
+                    I am currently in my 2nd year of my bachelor's degree in Computer Science.
+                    I have experience with Java, Python, JavaScript, HTML, CSS, React, React Native, SQL, Git, and more, and I am always eager to learn more.
+                </p>
+            </div>
+        </div>
+    );
 });
-

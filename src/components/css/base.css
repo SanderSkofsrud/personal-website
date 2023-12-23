@@ -5,7 +5,11 @@
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  background-color: #222;
+  background-color: #111;
+  color: #fff;
+  padding: 0 2rem; /* Horizontal padding */
+  margin: 0;
+  box-sizing: border-box; /* Ensures padding doesn't add to the width */
 }
 
 /* Set light text color */
@@ -83,11 +87,17 @@ li {
 
 /* Set styles for navbar */
 nav {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #8b4640; /* navbar color changed to red */
+  background-color: #000; /* #8b4640 */
+}
+
+nav, .TransitionShape {
+  margin-left: -2rem;
+  margin-right: -2rem;
 }
 
 nav ul {
@@ -115,12 +125,12 @@ nav button {
 }
 
 nav button:hover {
-  background-color: #a4544d; /* hover color changed to darker shade */
+  background-color: #1d1d1d; /* hover color changed to darker shade */
   color: #fff;
 }
 
 nav button.active {
-  color: #130202; /* active button color changed to white */
+  color: #d517e8; /* active button color changed to white */
 }
 
 /* Set styles for blockquotes */
@@ -168,22 +178,25 @@ html {
     scroll-behavior: smooth;
 }
 
-@media (max-width: 768px) {
+/* Styles for smaller screens */
+@media (max-width: 925px) {
+  nav ul {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  nav li {
+    margin: 0; /* Remove vertical margin */
+    width: 100%; /* Optional: Make each item full width */
+  }
+
+  /* Hide the menu button as it's not needed */
   .menu-button {
-    display: inline;
-  }
-
-  .desktop-menu {
     display: none;
-  }
-
-  .mobile-menu {
-    display: flex;
-    flex-direction: column;
   }
 }
 
-@media (min-width: 769px) {
+
+@media (min-width: 926px) {
   .menu-button {
     display: none;
   }
@@ -198,6 +211,112 @@ html {
   }
 }
 
-.menu-button {
-  display: none;
+.menu-button img {
+  max-width: 25px;
+}
+
+.mobile-menu {
+  position: fixed;
+  right: -100%;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: #333;
+  transition: 0.5s ease-in-out;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+.mobile-menu li {
+  margin: 2rem 1rem;
+}
+
+.education-container {
+  text-align: center; /* Aligns the h1 above the cards */
+  padding: 2rem;
+}
+
+/* Styles for the card list */
+.card-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-list-item {
+  background-color: #222222;
+  margin: 0.5rem 0; /* Adjust the margin as needed */
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  width: 80%; /* Adjust width as needed */
+  max-width: 750px; /* Prevents the card from becoming too wide on larger screens */
+  text-align: center;
+}
+
+.card-list-item:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.weak-text {
+  font-weight: normal; /* Default weight */
+  color: #aaa; /* Lighter text color */
+  display: block; /* If you want the date to be on its own line */
+}
+
+.card-list-item strong {
+  display: block; /* Or inline-block, depending on your design */
+  margin-bottom: 0.5rem;
+  color: #ffffff; /* Adjust color to match your design */
+  font-weight: 700; /* Optional: Makes the title bold */
+  text-align: center;
+}
+
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align the tops */
+  padding: 2rem;
+}
+
+.about-image {
+  flex: 0 0 auto; /* Do not grow or shrink */
+  margin-right: 4rem; /* Increased spacing between image and text */
+  max-width: 200px; /* Adjust to desired width while maintaining aspect ratio */
+}
+
+.about-image img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column; /* Stack h1 and p on top of each other */
+  justify-content: center;
+  max-width: 600px; /* Adjust to your desired text width */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 925px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-image {
+    margin-right: 0; /* Reset margins for small screens */
+    margin-bottom: 2rem; /* Increased spacing between image and text on small screens */
+  }
+
+  .about-text {
+    /* Full width on small screens */
+    max-width: 100%;
+  }
 }

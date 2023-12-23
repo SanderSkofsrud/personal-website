@@ -1,4 +1,6 @@
 import React, { forwardRef, useState, useEffect, RefObject, useRef } from "react";
+import menuImage from "./images/menu.png";
+import closeImage from "./images/close.png";
 import "./css/base.css";
 
 interface NavBarProps {
@@ -10,12 +12,26 @@ export const NavBar: React.FC<NavBarProps> = ({ sections, refs }) => {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const navbarRef = useRef<HTMLDivElement>(null);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
-  
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false); // New state
+
   const updateMobileView = () => {
     setIsMobileView(window.innerWidth <= 768);
   };
 
-  window.addEventListener('resize', updateMobileView);
+  useEffect(() => {
+    const handleResize = () => {
+      updateMobileView();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Clean up
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
 
   const handleClick = (ref: RefObject<HTMLDivElement>, index: number) => {
     const element = ref.current;
@@ -24,10 +40,19 @@ export const NavBar: React.FC<NavBarProps> = ({ sections, refs }) => {
       const navbarHeight = navbarRef.current?.getBoundingClientRect().height ?? 0;
       const offset = top + window.pageYOffset - navbarHeight;
       window.scrollTo({ top: offset, behavior: "smooth" });
-      setActiveIndex(index);
-      setIsMobileView(false);
+      setMenuOpen(false);
+
+      // Estimate the duration of the scrolling animation
+      const scrollDuration = Math.abs(window.scrollY - offset) / 2; // This assumes a speed of 2 pixels/ms, adjust as needed
+
+      // Set the active index after the estimated scrolling duration
+      setTimeout(() => {
+        setActiveIndex(index);
+        setIsScrolling(false);
+      }, scrollDuration);
     }
   };
+
 
   useEffect(() => {
     const options = {
@@ -37,7 +62,7 @@ export const NavBar: React.FC<NavBarProps> = ({ sections, refs }) => {
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= options.threshold) {
+        if (!isScrolling && entry.isIntersecting && entry.intersectionRatio >= options.threshold) {
           const index = refs.findIndex((ref) => ref.current === entry.target);
           setActiveIndex(index);
         }
@@ -57,26 +82,36 @@ export const NavBar: React.FC<NavBarProps> = ({ sections, refs }) => {
         }
       });
     };
-  }, [refs, navbarRef]);
+  }, [refs, navbarRef, isScrolling]);
+
+  useEffect(() => {
+    const handleScrollEnd = () => {
+      setIsScrolling(false);
+    };
+
+    window.addEventListener("scroll", handleScrollEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollEnd);
+    };
+  }, []);
 
   return (
-    <nav className="sticky" ref={navbarRef}>
-      <h1>SITE IS CURRENTLY UNDER CONSTRUCTION</h1>
-      <button className="menu-button" onClick={() => setIsMobileView(!isMobileView)}>
-        {isMobileView ? "Close" : "Menu"}
-      </button>
-      <ul className={isMobileView ? "mobile-menu" : "desktop-menu"}>
-        {sections.map((section, index) => (
-          <li key={index}>
-            <button
-              className={index === activeIndex ? "active" : ""}
-              onClick={() => handleClick(refs[index], index)}
-            >
-              {section.toUpperCase()}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </nav>
+      <nav className="sticky" ref={navbarRef}>
+        <h1>SITE IS CURRENTLY UNDER CONSTRUCTION</h1>
+
+        <ul>
+          {sections.map((section, index) => (
+              <li key={index}>
+                <button
+                    className={index === activeIndex ? "active" : ""}
+                    onClick={() => handleClick(refs[index], index)}
+                >
+                  {section.toUpperCase()}
+                </button>
+              </li>
+          ))}
+        </ul>
+      </nav>
   );
 };

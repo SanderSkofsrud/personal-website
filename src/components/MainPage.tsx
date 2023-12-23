@@ -1,6 +1,6 @@
 import React, { createRef } from "react";
 import { NavBar } from "./NavBar";
-import { WaveSection } from "./Header";
+import TransitionSection from "./Header";
 import { About } from "./About";
 import { Education } from "./Education";
 import { Experience } from "./Experience";
@@ -14,7 +14,7 @@ export const MainPage: React.FC = () => {
   return (
     <main>
       <NavBar sections={sections} refs={refs} />
-      <WaveSection />
+      <TransitionSection />
       <About ref={refs[0]} />
       <Education ref={refs[1]} />
       <Experience ref={refs[2]} />
