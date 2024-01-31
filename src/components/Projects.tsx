@@ -28,7 +28,7 @@ export const Projects = forwardRef<HTMLDivElement>((props, ref) => {
 
   return (
       <div ref={ref} className="education-container">
-        <h1>Education</h1>
+        <h1>Projects</h1>
         <ul className="card-list">
           {projectDetails.map((detail, index) => (
               <li key={index} className="card-list-item">
