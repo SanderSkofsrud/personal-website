@@ -17,7 +17,7 @@ export const About = forwardRef<HTMLDivElement>((props, ref) => {
                 </p>
                 <p>
                     I am currently in my 2nd year of my bachelor's degree in Computer Science.
-                    I have experience with Java, Python, JavaScript, HTML, CSS, React, React Native, SQL, Git, and more, and I am always eager to learn more.
+                    I have experience with Java, Python, JavaScript, HTML, CSS, React, React Native, SQL, Git, and more, and I am always eager to learn more!
                 </p>
             </div>
         </div>
